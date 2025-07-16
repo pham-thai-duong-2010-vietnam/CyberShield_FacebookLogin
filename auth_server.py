@@ -123,6 +123,7 @@ def get_facebook_token(token):
     if access_token:
         return jsonify({"access_token": access_token})
     else:
+        app.logger.warning(f"Token {token} not found or expired")
         return jsonify({"error": "Invalid or expired token"}), 401
 
 @app.route('/facebook/logout/<token>', methods=['POST'])
